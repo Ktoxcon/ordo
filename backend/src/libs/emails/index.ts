@@ -9,9 +9,9 @@ export async function sendAuthLinkEmail({
   email,
   token,
 }: SendAuthLinkEmailArgs) {
-  const link = new URL(
-    `${process.env.APP_URL!}/auth/verify`
-  ).searchParams.append("token", token);
+  const link = new URL(`${process.env.APP_URL!}/auth/verify`);
+
+  link.searchParams.append("token", token);
 
   const html = `<a href=${link}>Your magic link</a>`;
 
