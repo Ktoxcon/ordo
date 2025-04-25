@@ -1,0 +1,27 @@
+{
+  "functions": [
+    {
+      "source": "backend",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": ["npm --prefix \"$RESOURCE_DIR\" run build"]
+    }
+  ],
+  "hosting": {
+    "public": "frontend/dist/ordo-frontend/browser",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      { "function": "api", "source": "/api/**" },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
