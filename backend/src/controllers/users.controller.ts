@@ -24,7 +24,12 @@ export const UsersController = {
           error instanceof ZodError ? error.flatten() : error.message;
 
         response.status(400).send({ success: false, error: errorDetails });
+        return;
       }
+
+      response
+        .status(500)
+        .send({ success: false, error: "Internal server error." });
     }
   },
 
@@ -49,7 +54,12 @@ export const UsersController = {
           error instanceof ZodError ? error.flatten() : error.message;
 
         response.status(400).send({ success: false, error: errorDetails });
+        return;
       }
+
+      response
+        .status(500)
+        .send({ success: false, error: "Internal server error." });
     }
   },
 };
