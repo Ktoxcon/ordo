@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
-      - run: cd frontend && pnpm install && pnpm build
+      - run: cd backend && pnpm install && pnpm build
       - name: Firebase Cloud Functions Deploy
         uses: Ktoxcon/action-cloud-functions-deploy@0.1.0
         with:
