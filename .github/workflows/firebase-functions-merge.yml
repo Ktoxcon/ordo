@@ -21,6 +21,6 @@ jobs:
         uses: Ktoxcon/action-cloud-functions-deploy@0.1.0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ORDO_12A39 }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_CLOUD_FUNCTIONS_SERVICE_ACCOUNT }}
           channelId: live
           projectId: ordo-12a39
