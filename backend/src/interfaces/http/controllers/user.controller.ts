@@ -1,16 +1,19 @@
-import { EditUserRequestBodySchema } from "@ordo/libs/validators/user.schemas";
-import { IdParamSchema } from "@ordo/libs/validators/util.schemas";
+import { UserService } from "@ordo/application/user/user.service";
+import { UpdateUserRequestBodySchema } from "@ordo/interfaces/http/validators/user.schemas";
+import { IdParamSchema } from "@ordo/interfaces/http/validators/util.schemas";
 import type { Request, Response } from "express";
+import { inject, injectable } from "inversify";
 import { ZodError } from "zod";
 
-export const UsersController = {
-  async getUser(request: Request, response: Response) {
+@injectable()
+export class UserController {
+  constructor(@inject(UserService) private userService: UserService) {}
+
+  async findUserById(request: Request, response: Response) {
     try {
       const id = IdParamSchema.parse(request.params.id);
 
-      console.debug(id);
-
-      const user = await Promise.resolve({});
+      const user = await this.userService.findUserById(id);
 
       if (!user) {
         response.status(404).send({ success: false, error: "User not found." });
@@ -31,12 +34,12 @@ export const UsersController = {
         .status(500)
         .send({ success: false, error: "Internal server error." });
     }
-  },
+  }
 
   async updateUser(request: Request, response: Response) {
     try {
       const id = IdParamSchema.parse(request.params.id);
-      const userUpdatePayload = EditUserRequestBodySchema.parse(request.body);
+      const userUpdatePayload = UpdateUserRequestBodySchema.parse(request.body);
 
       console.debug(id, userUpdatePayload);
 
@@ -61,5 +64,5 @@ export const UsersController = {
         .status(500)
         .send({ success: false, error: "Internal server error." });
     }
-  },
-};
+  }
+}

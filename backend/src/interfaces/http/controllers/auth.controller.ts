@@ -1,37 +1,38 @@
+import { UserService } from "@ordo/application/user/user.service";
 import AppConfig from "@ordo/config/app.config";
-import { DayInMilliseconds } from "@ordo/libs/constants/time";
-import { sendAuthLinkEmail } from "@ordo/libs/emails";
-import { encodeData } from "@ordo/libs/encode";
-import {
-  SendAuthLinkBodySchema,
-  VerifyAuthLinkBodySchema,
-} from "@ordo/libs/validators/auth.schemas";
+import { SignUpRequestBodySchema } from "@ordo/interfaces/http/validators/auth.schemas";
+import { DayInMilliseconds } from "@ordo/shared/constants/time";
+import { encodeData } from "@ordo/shared/encode";
 import type { Request, Response } from "express";
-import { sign, verify } from "jsonwebtoken";
+import { inject, injectable } from "inversify";
+import { sign } from "jsonwebtoken";
 import { ZodError } from "zod";
 
-export const AuthController = {
-  async sendMagicLink(request: Request, response: Response) {
+@injectable()
+export class AuthController {
+  constructor(
+    @inject(UserService)
+    private userService: UserService
+  ) {
+    this.signUp = this.signUp.bind(this);
+    this.signIn = this.signIn.bind(this);
+    this.signOut = this.signOut.bind(this);
+  }
+
+  async signUp(request: Request, response: Response) {
     try {
-      const { email } = SendAuthLinkBodySchema.parse(request.body);
+      const { email } = SignUpRequestBodySchema.parse(request.body);
 
-      const userExists = await Promise.resolve({});
+      const userExists = await this.userService.findUserByEmail(email);
 
-      if (!userExists) {
-        //@TODO: Create User
+      if (userExists) {
+        response.status(400).send({
+          success: false,
+          error: "User already exists.",
+        });
+
+        return;
       }
-
-      const token = sign(
-        {
-          userId: "",
-        },
-        AppConfig.sessionSecret,
-        {
-          expiresIn: "24h",
-        }
-      );
-
-      await sendAuthLinkEmail({ email, token });
 
       response.send({ success: true });
     } catch (error) {
@@ -47,15 +48,13 @@ export const AuthController = {
         .status(500)
         .send({ success: false, error: "Internal server error." });
     }
-  },
+  }
 
-  async verify(request: Request, response: Response) {
+  async signIn(request: Request, response: Response) {
     try {
-      const { token } = VerifyAuthLinkBodySchema.parse(request.body);
+      const { email } = SignUpRequestBodySchema.parse(request.body);
 
-      await verify(token, AppConfig.sessionSecret);
-
-      const user = await Promise.resolve({});
+      const user = await this.userService.findUserByEmail(email);
 
       if (!user) {
         response.status(404).send({
@@ -68,7 +67,7 @@ export const AuthController = {
 
       const session = sign(
         {
-          data: {},
+          data: { user },
         },
         AppConfig.sessionSecret,
         {
@@ -82,7 +81,7 @@ export const AuthController = {
         maxAge: DayInMilliseconds,
       });
 
-      response.cookie("profile", encodeData({ ...user }), {
+      response.cookie("profile", encodeData(user), {
         sameSite: true,
         maxAge: DayInMilliseconds,
       });
@@ -94,14 +93,9 @@ export const AuthController = {
           error instanceof ZodError ? error.flatten() : error.message;
 
         response.status(400).send({ success: false, error: errorDetails });
-        return;
       }
-
-      response
-        .status(500)
-        .send({ success: false, error: "Internal server error." });
     }
-  },
+  }
 
   async signOut(_request: Request, response: Response) {
     try {
@@ -115,5 +109,5 @@ export const AuthController = {
 
       response.status(500).send({ success: false, error: errorMessage });
     }
-  },
-};
+  }
+}

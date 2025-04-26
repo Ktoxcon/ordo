@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "module": "NodeNext",
+    "skipLibCheck": true,
     "esModuleInterop": true,
     "moduleResolution": "nodenext",
     "noImplicitReturns": true,
@@ -8,6 +9,9 @@
     "outDir": "dist",
     "strict": true,
     "target": "es2017",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "paths": {
       "@ordo/*": ["./src/*"]
     }
