@@ -1,8 +1,8 @@
 import { TaskService } from "@ordo/application/task/task.service";
 import { IdParamSchema } from "@ordo/interfaces/http/validators/util.schemas";
-import { TaskStatus } from "@ordo/shared/constants/task-status";
 import type { Request, Response } from "express";
 import { inject, injectable } from "inversify";
+import { DateTime } from "luxon";
 import { ZodError } from "zod";
 import {
   CreateTaskRequestBodySchema,
@@ -12,6 +12,7 @@ import {
 @injectable()
 export class TaskController {
   constructor(@inject(TaskService) private taskService: TaskService) {
+    this.deleteTask = this.deleteTask.bind(this);
     this.createTask = this.createTask.bind(this);
     this.updateTask = this.updateTask.bind(this);
     this.findTaskById = this.findTaskById.bind(this);
@@ -28,7 +29,8 @@ export class TaskController {
       const newTask = await this.taskService.createTask({
         ...taskCreationPayload,
         userId,
-        status: TaskStatus.PENDING,
+        completed: false,
+        creationDate: DateTime.now().toISO(),
       });
 
       response.send({ success: true, data: newTask });
@@ -108,6 +110,35 @@ export class TaskController {
       }
 
       await this.taskService.updateTask(id, taskUpdatePayload);
+
+      response.send({ success: true });
+    } catch (error) {
+      if (error instanceof Error) {
+        const errorDetails =
+          error instanceof ZodError ? error.flatten() : error.message;
+
+        response.status(400).send({ success: false, error: errorDetails });
+        return;
+      }
+
+      response
+        .status(500)
+        .send({ success: false, error: "Internal server error." });
+    }
+  }
+
+  async deleteTask(request: Request, response: Response) {
+    try {
+      const id = IdParamSchema.parse(request.params.id);
+
+      const task = await this.taskService.findTaskById(id);
+
+      if (!task) {
+        response.status(404).send({ success: false, error: "Task not found." });
+        return;
+      }
+
+      await this.taskService.deleteTask(id);
 
       response.send({ success: true });
     } catch (error) {

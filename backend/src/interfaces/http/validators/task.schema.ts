@@ -1,4 +1,3 @@
-import { TaskStatusZodEnum } from "@ordo/shared/constants/task-status";
 import z from "zod";
 
 export const CreateTaskRequestBodySchema = z.object({
@@ -7,5 +6,5 @@ export const CreateTaskRequestBodySchema = z.object({
 });
 
 export const UpdateTaskRequestBodySchema = CreateTaskRequestBodySchema.extend({
-  status: z.enum(TaskStatusZodEnum),
+  completed: z.enum(["true", "false"]).transform((status) => status === "true"),
 }).partial();

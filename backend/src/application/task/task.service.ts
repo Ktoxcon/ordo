@@ -17,6 +17,10 @@ export class TaskService {
     return this.taskRepository.update(id, taskData);
   }
 
+  async deleteTask(id: string) {
+    return this.taskRepository.delete(id);
+  }
+
   async findTaskById(id: string): Promise<Task | null> {
     return this.taskRepository.findById(id);
   }
