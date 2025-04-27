@@ -34,6 +34,8 @@ export class AuthController {
         return;
       }
 
+      await this.userService.createUser({ email });
+
       response.send({ success: true });
     } catch (error) {
       if (error instanceof Error) {

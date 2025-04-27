@@ -1,6 +1,6 @@
+import { db } from "@ordo/config/firestore.config";
 import type { Task } from "@ordo/domain/task";
 import type { TaskRepository } from "@ordo/domain/task/task.repository";
-import { getFirestore } from "firebase-admin/firestore";
 import { injectable } from "inversify";
 
 @injectable()
@@ -8,7 +8,6 @@ export class FirestoreTaskRepository implements TaskRepository {
   private collection;
 
   constructor() {
-    const db = getFirestore();
     this.collection = db.collection("tasks");
   }
 

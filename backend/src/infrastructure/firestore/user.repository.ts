@@ -1,6 +1,6 @@
+import { db } from "@ordo/config/firestore.config";
 import type { User } from "@ordo/domain/user";
 import type { UserRepository } from "@ordo/domain/user/user.repository";
-import { getFirestore } from "firebase-admin/firestore";
 import { injectable } from "inversify";
 
 @injectable()
@@ -8,7 +8,6 @@ export class FirestoreUserRepository implements UserRepository {
   private collection;
 
   constructor() {
-    const db = getFirestore();
     this.collection = db.collection("users");
   }
 
