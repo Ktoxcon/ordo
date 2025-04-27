@@ -7,7 +7,10 @@ import { ZodError } from "zod";
 
 @injectable()
 export class UserController {
-  constructor(@inject(UserService) private userService: UserService) {}
+  constructor(@inject(UserService) private userService: UserService) {
+    this.updateUser = this.updateUser.bind(this);
+    this.findUserById = this.findUserById.bind(this);
+  }
 
   async findUserById(request: Request, response: Response) {
     try {

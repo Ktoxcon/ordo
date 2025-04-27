@@ -22,7 +22,7 @@ export class FirestoreUserRepository implements UserRepository {
 
     if (!user.exists) return null;
 
-    return { ...user.data() } as User;
+    return { ...user.data(), id: user.id } as User;
   }
 
   async findByEmail(email: string): Promise<User | null> {
@@ -37,7 +37,7 @@ export class FirestoreUserRepository implements UserRepository {
 
     const [user] = result.docs;
 
-    return { ...user.data() } as User;
+    return { ...user.data(), id: user.id } as User;
   }
 
   async update(id: string, user: Partial<User>) {

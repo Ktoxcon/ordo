@@ -4,7 +4,7 @@ import { AuthMiddleware } from "@ordo/interfaces/http/middleware/auth.middleware
 import { UrlEncodedMiddleware } from "@ordo/interfaces/http/middleware/url-encoded.middleware";
 import { Router } from "express";
 
-const controller: UserController = container.get(UserController);
+const controller = container.get(UserController);
 
 export const ProfileRoutes = Router();
 

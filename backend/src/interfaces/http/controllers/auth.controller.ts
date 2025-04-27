@@ -69,7 +69,7 @@ export class AuthController {
 
       const session = sign(
         {
-          data: { user },
+          data: user,
         },
         AppConfig.sessionSecret,
         {
