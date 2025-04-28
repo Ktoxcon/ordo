@@ -1,0 +1,16 @@
+<section class="tasks-grid" cols="3" rowHeight="2:1" gutterSize="16px">
+  @for (task of tasks; track task.id) {
+  <app-task-card
+    [id]="task.id"
+    [title]="task.title"
+    [completed]="task.completed"
+    [description]="task.description"
+    [creationDate]="task.creationDate"
+    (deleted)="loadTasks()"
+  />
+  } @empty {
+  <div class="tasks-grid--empty">
+    <p>Task list is empty. Time to plan your next victory!</p>
+  </div>
+  }
+</section>

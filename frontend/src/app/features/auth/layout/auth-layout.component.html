@@ -1,0 +1,16 @@
+<layout>
+  <app-nav layout-header [hideLinks]="true" />
+  <section layout-main class="auth">
+    <div class="auth__section">
+      <mat-card
+        class="auth__card"
+        [ngClass]="{
+          'auth__card--mobile': (isHandset$ | async),
+          'auth__card--desktop': !(isHandset$ | async)
+        }"
+      >
+        <router-outlet></router-outlet>
+      </mat-card>
+    </div>
+  </section>
+</layout>

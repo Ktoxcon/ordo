@@ -1,0 +1,9 @@
+.form-container {
+  &--mobile {
+    width: 100%;
+  }
+
+  &--desktop {
+    width: 50%;
+  }
+}

@@ -1,0 +1,21 @@
+.task-card {
+  width: 100%;
+  padding: 1rem;
+
+  &__header,
+  &__content,
+  &__footer {
+    padding: 1rem 0px;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

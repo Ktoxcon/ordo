@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Account Not Found</h2>
+<mat-dialog-content>
+  <p>
+    The account {{ credentials.email }} was not found, Would you like to create
+    it?
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog__actions">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-button
+    mat-dialog-close
+    cdkFocusInitial
+    (click)="createAccountAndSignIn()"
+  >
+    Confirm
+  </button>
+</mat-dialog-actions>

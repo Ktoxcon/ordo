@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ordo-frontend",
+            "outputPath": "dist/@ordo/frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -55,10 +55,11 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ordo-frontend:build:production"
+              "buildTarget": "@ordo/frontend:build:production"
             },
             "development": {
-              "buildTarget": "ordo-frontend:build:development"
+              "proxyConfig": "src/proxy.conf.json",
+              "buildTarget": "@ordo/frontend:build:development"
             }
           },
           "defaultConfiguration": "development"

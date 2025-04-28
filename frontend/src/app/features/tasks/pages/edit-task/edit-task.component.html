@@ -1,0 +1,44 @@
+<app-task-form-container>
+  <section class="edit-task__section">
+    <h2>Editing Task</h2>
+    <div class="edit-task__spacer"></div>
+  </section>
+  <section>
+    <form class="edit-task__form" [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput required formControlName="title" />
+        @if (title.hasError('required') && touched ) {
+        <mat-error>Title is required </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          formControlName="description"
+          placeholder="Ex. Complete Chores..."
+        ></textarea>
+        @if (description.hasError('required') && touched ) {
+        <mat-error>Description is required </mat-error>
+        }
+      </mat-form-field>
+
+      @if (error) {
+      <p>Unexpected error</p>
+      }
+      <div class="edit-task__actions">
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          [disabled]="form.invalid || loading"
+        >
+          @if (loading) { Updating Task... } @else { Confirm }
+        </button>
+        <a mat-stroked-button routerLink="/tasks">Cancel</a>
+      </div>
+    </form>
+  </section>
+</app-task-form-container>

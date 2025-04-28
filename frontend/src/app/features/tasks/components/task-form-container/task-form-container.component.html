@@ -1,0 +1,9 @@
+<div
+  class="form-container"
+  [ngClass]="{
+    'form-container--mobile': (isHandset$ | async),
+    'form-container--desktop': !(isHandset$ | async)
+  }"
+>
+  <ng-content></ng-content>
+</div>

@@ -1,0 +1,66 @@
+.home {
+  &__principal {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    &-content {
+      padding: 2rem;
+    }
+
+    &-title {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    &-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+  }
+
+  &__features {
+    padding: 4rem 2rem;
+
+    &-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+  }
+
+  &__feature {
+    padding: 2rem;
+    text-align: center;
+
+    &-title {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    &-description {
+      font-size: 1.2rem;
+    }
+  }
+
+  &__join {
+    padding: 4rem 2rem;
+    text-align: center;
+
+    &-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    &-description {
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
+    }
+  }
+}

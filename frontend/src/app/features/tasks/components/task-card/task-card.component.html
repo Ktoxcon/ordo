@@ -1,0 +1,33 @@
+<mat-card appearance="outlined" class="task-card">
+  <mat-card-header class="task-card__header">
+    <mat-card-title>{{ title }}</mat-card-title>
+    <div class="task-card__actions">
+      <a
+        mat-icon-button
+        aria-label="Edit task icon link"
+        [routerLink]="['/tasks', id, 'edit']"
+      >
+        <mat-icon>edit</mat-icon>
+      </a>
+      <button
+        mat-icon-button
+        (click)="openDialog()"
+        aria-label="Delete task icon"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="Complete task icon">
+        <mat-icon>check</mat-icon>
+      </button>
+    </div>
+  </mat-card-header>
+  <mat-card-content class="task-card__content">
+    <p>{{ description }}</p>
+  </mat-card-content>
+  <mat-card-footer class="task-card__footer">
+    <mat-chip-set aria-label="Task status">
+      <mat-chip> @if (completed) {COMPLETED} @else {PENDING} </mat-chip>
+    </mat-chip-set>
+    <time [dateTime]="creationDate">{{ formattedCreationDate }}</time>
+  </mat-card-footer>
+</mat-card>

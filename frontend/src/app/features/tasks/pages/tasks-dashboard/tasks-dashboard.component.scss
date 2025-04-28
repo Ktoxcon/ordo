@@ -1,0 +1,10 @@
+.dashboard {
+  &__section {
+    display: flex;
+    align-items: center;
+  }
+
+  &__spacer {
+    flex: 1 1 0;
+  }
+}

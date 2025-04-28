@@ -1,0 +1,24 @@
+.edit-task {
+  &__section,
+  &__form {
+    display: flex;
+  }
+
+  &__section {
+    align-items: center;
+  }
+
+  &__form {
+    flex-direction: column;
+  }
+
+  &__spacer {
+    flex: 1 1 0;
+  }
+
+  &__actions {
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+}

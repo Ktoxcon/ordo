@@ -1,15 +1,29 @@
-import { Routes } from "@angular/router";
-import { HomeComponent } from "./home/home.component";
-import { MagicLinkFormComponent } from "./magic-link-form/magic-link-form.component";
+import type { Routes } from "@angular/router";
+import { guestGuard } from "./core/auth/guards/guest.guard";
+import { HomeComponent } from "./features/home/pages/landing/home.component";
 
 export const routes: Routes = [
   {
     path: "",
+    title: "Ordo",
+    pathMatch: "full",
+    canMatch: [guestGuard],
     component: HomeComponent,
   },
   {
     path: "auth",
-
-    children: [{ path: "magic-link", component: MagicLinkFormComponent }],
+    loadChildren: () =>
+      import("./features/auth/auth.routes").then(
+        ({ AuthRoutes }) => AuthRoutes
+      ),
   },
+  {
+    path: "tasks",
+
+    loadChildren: () =>
+      import("./features/tasks/tasks.routes").then(
+        ({ TasksRoutes }) => TasksRoutes
+      ),
+  },
+  { path: "**", redirectTo: "" },
 ];

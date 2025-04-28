@@ -1,0 +1,14 @@
+.app-nav {
+  &__main {
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+
+  &__spacer {
+    flex: 1 1 auto;
+  }
+
+  li {
+    list-style: none;
+  }
+}

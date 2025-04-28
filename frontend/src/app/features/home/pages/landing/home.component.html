@@ -1,0 +1,48 @@
+<layout>
+  <app-nav layout-header />
+  <div layout-main class="home">
+    <section class="home__principal">
+      <div class="home__principa-content">
+        <h1 class="home__principal-title">Welcome to ORDO</h1>
+        <p class="home__principal-subtitle">Organize. Destroy the Chaos.</p>
+        <a
+          mat-flat-button
+          color="primary"
+          class="home__principal-button"
+          routerLink="/auth/sign-in"
+        >
+          Get Started
+        </a>
+      </div>
+      <div class="home__hero-background"></div>
+    </section>
+
+    <section class="home__features">
+      <div class="home__features-grid">
+        @for (feature of featureList; track feature.title) {
+        <div class="home__feature">
+          <h2 class="home__feature-title">{{ feature.title }}</h2>
+          <p class="home__feature-description">
+            {{ feature.description }}
+          </p>
+        </div>
+        }
+      </div>
+    </section>
+
+    <section class="home__join">
+      <h2 class="home__join-title">Join the Inquisition</h2>
+      <p class="home__join-description">
+        Unleash the power of organization. Purge the chaos from your life.
+      </p>
+      <a
+        mat-stroked-button
+        color="accent"
+        class="home__join-button"
+        routerLink="/auth/sign-in"
+      >
+        Join Now
+      </a>
+    </section>
+  </div>
+</layout>
