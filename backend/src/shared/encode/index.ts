@@ -54,11 +54,11 @@ function unescape(value: string): string {
   return result;
 }
 
-export function encodeData(value: any): string {
+export function encodeData(value: unknown): string {
   return btoa(unescape(encodeURIComponent(JSON.stringify(value))));
 }
 
-export function decodeData(value: string): any {
+export function decodeData(value: string): unknown {
   try {
     return JSON.parse(decodeURIComponent(escape(atob(value))));
   } catch (error: unknown) {

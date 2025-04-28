@@ -14,7 +14,7 @@
     }
   ],
   "hosting": {
-    "public": "frontend/dist/ordo-frontend/browser",
+    "public": "frontend/dist/@ordo/frontend/browser",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
