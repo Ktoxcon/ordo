@@ -3,10 +3,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { MAT_DIALOG_DATA, MatDialogModule } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { concatMap } from "rxjs";
-import {
-  type AuthCredentials,
-  AuthService,
-} from "../../../../core/auth/services/auth.service";
+import { AuthService } from "../../../../core/auth/services/auth.service";
+import type { UserCredentials } from "../../../../shared/types/user.types";
 
 @Component({
   selector: "app-sign-up-dialog",
@@ -19,7 +17,7 @@ export class SignUpDialogComponent {
   private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
 
-  credentials: AuthCredentials = inject(MAT_DIALOG_DATA);
+  credentials: UserCredentials = inject(MAT_DIALOG_DATA);
 
   createAccountAndSignIn() {
     this.authService

@@ -1,13 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
-
-export interface Task {
-  id: string;
-  title: string;
-  completed: boolean;
-  description: string;
-  creationDate: string;
-}
+import type { Task } from "../../../shared/types/task.types";
 
 @Injectable({
   providedIn: "root",
@@ -16,30 +9,22 @@ export class TaskService {
   private http = inject(HttpClient);
 
   createTask(task: Omit<Task, "id">) {
-    return this.http.post<Task>("/api/tasks", task, { withCredentials: true });
+    return this.http.post<Task>("/api/tasks", task);
   }
 
   getTask(id: string) {
-    return this.http.get<{ data: Task }>(`/api/tasks/${id}`, {
-      withCredentials: true,
-    });
+    return this.http.get<{ data: Task }>(`/api/tasks/${id}`);
   }
 
   listTasks() {
-    return this.http.get<{ data: Task[] }>("/api/tasks", {
-      withCredentials: true,
-    });
+    return this.http.get<{ data: Task[] }>("/api/tasks");
   }
 
   updateTask(id: string, updates: Partial<Task>) {
-    return this.http.patch<Task>(`/api/tasks/${id}`, updates, {
-      withCredentials: true,
-    });
+    return this.http.patch<Task>(`/api/tasks/${id}`, updates);
   }
 
   deleteTask(id: string) {
-    return this.http.delete<{ success: boolean }>(`/api/tasks/${id}`, {
-      withCredentials: true,
-    });
+    return this.http.delete<{ success: boolean }>(`/api/tasks/${id}`);
   }
 }

@@ -1,5 +1,5 @@
 import AppConfig from "@ordo/config/app.config";
-import { NextFunction, Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 
 export async function AuthMiddleware(

@@ -9,10 +9,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { Router, RouterLink } from "@angular/router";
-import {
-  type AuthCredentials,
-  AuthService,
-} from "../../../../core/auth/services/auth.service";
+import { AuthService } from "../../../../core/auth/services/auth.service";
+import type { UserCredentials } from "../../../../shared/types/user.types";
 import { SignUpDialogComponent } from "../../components/sign-up-dialog/sign-up-dialog.component";
 
 @Component({
@@ -67,7 +65,7 @@ export class SignInComponent {
     this.loading = true;
     this.error = false;
 
-    this.auth.signIn(this.form.value as AuthCredentials).subscribe({
+    this.auth.signIn(this.form.value as UserCredentials).subscribe({
       next: () => this.router.navigateByUrl("/tasks"),
       error: ({ status }: HttpErrorResponse) => {
         this.loading = false;

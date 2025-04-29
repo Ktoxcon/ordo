@@ -1,8 +1,6 @@
 import { Component, inject } from "@angular/core";
-import {
-  type Task,
-  TaskService,
-} from "../../../../core/tasks/services/task.service";
+import { TaskService } from "../../../../core/tasks/services/task.service";
+import type { Task } from "../../../../shared/types/task.types";
 import { TaskCardComponent } from "../task-card/task-card.component";
 
 @Component({

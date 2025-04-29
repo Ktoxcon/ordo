@@ -5,10 +5,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { Router, RouterLink } from "@angular/router";
-import {
-  type Task,
-  TaskService,
-} from "../../../../core/tasks/services/task.service";
+import { TaskService } from "../../../../core/tasks/services/task.service";
+import type { Task } from "../../../../shared/types/task.types";
 import { TaskFormContainerComponent } from "../../components/task-form-container/task-form-container.component";
 
 @Component({

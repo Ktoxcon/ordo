@@ -7,10 +7,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { Router, RouterLink } from "@angular/router";
-import {
-  type AuthCredentials,
-  AuthService,
-} from "../../../../core/auth/services/auth.service";
+import { AuthService } from "../../../../core/auth/services/auth.service";
+import type { UserCredentials } from "../../../../shared/types/user.types";
 
 @Component({
   selector: "app-sign-up",
@@ -54,7 +52,7 @@ export class SignUpComponent {
     this.loading = true;
     this.error = false;
 
-    this.auth.signUp(this.form.value as AuthCredentials).subscribe({
+    this.auth.signUp(this.form.value as UserCredentials).subscribe({
       next: () => this.router.navigateByUrl("/auth/sign-in"),
       error: () => {
         this.error = true;
