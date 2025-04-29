@@ -77,7 +77,7 @@ export class AuthController {
         }
       );
 
-      response.cookie("session", session, {
+      response.cookie("__session", session, {
         sameSite: true,
         httpOnly: true,
         maxAge: DayInMilliseconds,

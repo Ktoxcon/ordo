@@ -8,16 +8,16 @@ export async function AuthMiddleware(
   next: NextFunction
 ) {
   try {
-    const { session } = request.cookies;
+    const { __session } = request.cookies;
 
-    if (!session) {
+    if (!__session) {
       response
         .status(401)
         .send({ success: false, error: "Unauthorized Request" });
       return;
     }
 
-    const decodedSession = await verify(session, AppConfig.sessionSecret);
+    const decodedSession = await verify(__session, AppConfig.sessionSecret);
 
     response.locals.session = decodedSession;
 
