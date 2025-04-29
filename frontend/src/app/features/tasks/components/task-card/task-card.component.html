@@ -11,14 +11,12 @@
       </a>
       <button
         mat-icon-button
-        (click)="openDialog()"
+        (click)="deleteTask()"
         aria-label="Delete task icon"
       >
         <mat-icon>delete</mat-icon>
       </button>
-      <button mat-icon-button aria-label="Complete task icon">
-        <mat-icon>check</mat-icon>
-      </button>
+      <mat-checkbox [formControl]="completedCheckbox"></mat-checkbox>
     </div>
   </mat-card-header>
   <mat-card-content class="task-card__content">
@@ -26,7 +24,9 @@
   </mat-card-content>
   <mat-card-footer class="task-card__footer">
     <mat-chip-set aria-label="Task status">
-      <mat-chip> @if (completed) {COMPLETED} @else {PENDING} </mat-chip>
+      <mat-chip>
+        {{ completedCheckbox.value ? "COMPLETED" : "PENDING" }}
+      </mat-chip>
     </mat-chip-set>
     <time [dateTime]="creationDate">{{ formattedCreationDate }}</time>
   </mat-card-footer>

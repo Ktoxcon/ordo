@@ -6,7 +6,7 @@
     [completed]="task.completed"
     [description]="task.description"
     [creationDate]="task.creationDate"
-    (deleted)="loadTasks()"
+    (refresh)="loadTasks()"
   />
   } @empty {
   <div class="tasks-grid--empty">

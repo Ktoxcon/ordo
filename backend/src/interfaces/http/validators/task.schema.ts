@@ -6,5 +6,5 @@ export const CreateTaskRequestBodySchema = z.object({
 });
 
 export const UpdateTaskRequestBodySchema = CreateTaskRequestBodySchema.extend({
-  completed: z.enum(["true", "false"]).transform((status) => status === "true"),
+  completed: z.boolean(),
 }).partial();
