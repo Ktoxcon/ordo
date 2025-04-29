@@ -6,6 +6,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIcon } from "@angular/material/icon";
+import { MatTooltipModule } from "@angular/material/tooltip";
 import { RouterLink } from "@angular/router";
 import {
   catchError,
@@ -31,6 +32,7 @@ import { DeleteTaskDialogComponent } from "../delete-task-dialog/delete-task-dia
     MatChipsModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatTooltipModule,
     ReactiveFormsModule,
   ],
   templateUrl: "./task-card.component.html",

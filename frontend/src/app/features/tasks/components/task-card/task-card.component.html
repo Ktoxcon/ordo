@@ -4,6 +4,7 @@
     <div class="task-card__actions">
       <a
         mat-icon-button
+        matTooltip="Edit Task"
         aria-label="Edit task icon link"
         [routerLink]="['/tasks', id, 'edit']"
       >
@@ -12,11 +13,17 @@
       <button
         mat-icon-button
         (click)="deleteTask()"
+        matTooltip="Delete Task"
         aria-label="Delete task icon"
       >
         <mat-icon>delete</mat-icon>
       </button>
-      <mat-checkbox [formControl]="completedCheckbox"></mat-checkbox>
+      <mat-checkbox
+        [formControl]="completedCheckbox"
+        [matTooltip]="
+          completedCheckbox.value ? 'Mark as Pending' : 'Mark as Completed'
+        "
+      ></mat-checkbox>
     </div>
   </mat-card-header>
   <mat-card-content class="task-card__content">
