@@ -24,6 +24,6 @@ export class AuthLayoutComponent {
   private readonly breakpointObserver = inject(BreakpointObserver);
 
   readonly isHandset$ = this.breakpointObserver
-    .observe(Breakpoints.Handset)
+    .observe([Breakpoints.Small, Breakpoints.Handset])
     .pipe(map((result) => result.matches));
 }

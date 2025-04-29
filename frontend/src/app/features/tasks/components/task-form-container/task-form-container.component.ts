@@ -14,6 +14,6 @@ export class TaskFormContainerComponent {
   private readonly breakpointObserver = inject(BreakpointObserver);
 
   readonly isHandset$ = this.breakpointObserver
-    .observe(Breakpoints.Handset)
+    .observe([Breakpoints.Handset, Breakpoints.Small])
     .pipe(map((result) => result.matches));
 }
