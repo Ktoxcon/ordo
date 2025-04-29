@@ -93,7 +93,7 @@ The name Ordo comes from Latin, meaning "order" a fitting foundation for a task 
 
 But there's a deeper layer.
 
-For fans of Warhammer 40,000, Ordo also nods to the secretive and powerful branches of the Imperium—like the Ordo Hereticus or Ordo Xenos—dedicated to maintaining order in a universe of relentless chaos. Much like them, this app has one goal: to protect you from the heresy of disorganization.
+For fans of Warhammer 40,000, Ordo also nods to the secretive and powerful branches of the Imperium like the Ordo Hereticus or Ordo Xenos dedicated to maintaining order in a universe of relentless chaos. Much like them, this app has one goal: to protect you from the heresy of disorganization.
 
 ### Why a Monorepository?
 
