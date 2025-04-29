@@ -19,22 +19,32 @@ To run the project correctly, there are a few tools and processes that must be i
   **It is important to install PNPM before running the project.**
 
   You can install it easily using NPM:
-
   ```bash
   npm install -g pnpm
   ```
-
   Alternatively, you can follow the official PNPM guides for your operating system (please see their website for detailed instructions).
+
+- **Firebase CLI**  
+  Install the Firebase CLI. If you don't already have the Firebase CLI installed, install it now. You will need CLI version 8.14.0 or higher
+  to use the Emulator Suite.
+
+-  **Java**
+  Java JDK version 11 or higher is required to run the Firebase emulators.
 
 ### Environment & Other Tools
 
 - **Environment Variables**  
-  You need a `.env` file where you can store sensitive values such as connection URLs, API keys, and more. This file must be located in the root folder of each application, and you can use the existing `.env.sample` file in each app as a reference.
+  You need a `.env` file where you can store sensitive values such as connection URLs, API keys, and more. This file must be located in the root folder of the backend application, and you can use the existing `.env.sample` file in the backend app root as a reference.
 
 > [!IMPORTANT]
-> The file must be named `.env` because other filenames will not be detected by default. If you want to have multiple environment files, you must manually configure the application to do so.
+> The file must be named `.env` because other filenames will not be detected by default. If you want to have multiple environment files, you must manually configure the application to do so. This file is not tracked by Git, so it is safe to include any credentials or secure values there.
 
-This file is not tracked by Git, so it is safe to include any credentials or secure values there.
+- **Secrets**  
+  You need a `.secret.local` file where you can store sensitive values such as connection URLs, API keys, and more. This file must be located in the root folder of the backend application, and you can use the existing `.secret.sample` file in the backend app root as a reference.
+
+> [!IMPORTANT]
+> The file must be named `.secret.local` because other filenames will not be detected by default. If you want to have multiple secret files, you must manually configure the backend application to do so. This file is not tracked by Git, so it is safe to include any credentials or secure values there.
+
 
 ### Setting Up Project Dependencies
 
@@ -49,7 +59,7 @@ Once the installation process is complete, you can follow the next section comma
 > [!IMPORTANT]  
 > Please note that if you do not follow the prerequisites guide, it is likely that any of the project’s applications may not function correctly or may not run at all.
 
-## Running the Project
+## Running The Project
 
 ### Backend (Development Mode)
 
@@ -64,8 +74,9 @@ cd backend
 2. Execute the following command:
 
 ```bash
-pnpm dev
+pnpm serve:all
 ```
+Make sure you have properly configured any required environment variables in the `.env` file in the backend app before running the command.
 
 ### Frontend (Development Mode)
 
@@ -80,10 +91,8 @@ cd frontend
 2. Execute the following command:
 
 ```bash
-pnpm dev
-```
-
-You can execute this command either from the project's root directory or by navigating to where each application is located. Make sure you have properly configured any required environment variables in the `.env` file within each app folder before running the command.
+pnpm start
+``` 
 
 ## FAQ
 
@@ -93,7 +102,7 @@ The name Ordo comes from Latin, meaning "order" a fitting foundation for a task 
 
 But there's a deeper layer.
 
-For fans of Warhammer 40,000, Ordo also nods to the secretive and powerful branches of the Imperium like the Ordo Hereticus or Ordo Xenos dedicated to maintaining order in a universe of relentless chaos. Much like them, this app has one goal: to protect you from the heresy of disorganization.
+For fans of [Warhammer 40K](https://en.wikipedia.org/wiki/Warhammer_40,000), Ordo also nods to the secretive and powerful branches of the Imperium like the [Ordo Hereticus](https://warhammer40k.fandom.com/wiki/Ordo_Hereticus) or [Ordo Xenos](https://warhammer40k.fandom.com/wiki/Ordo_Xenos) dedicated to maintaining order in a universe of relentless chaos. Much like them, this app has one goal: to protect from the heresy of disorganization.
 
 ### Why a Monorepository?
 
