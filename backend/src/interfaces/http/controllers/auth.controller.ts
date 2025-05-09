@@ -101,7 +101,7 @@ export class AuthController {
 
   async signOut(_request: Request, response: Response) {
     try {
-      response.clearCookie("session");
+      response.clearCookie("__session");
       response.clearCookie("profile");
 
       response.send({ success: true });
